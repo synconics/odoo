@@ -169,6 +169,7 @@ class MailThread(models.AbstractModel):
     @api.multi
     def _get_message_unread(self):
         res = dict((res_id, 0) for res_id in self.ids)
+        partner_id = self.env.user.partner_id.id
 
         # search for unread messages, directly in SQL to improve performances
         self._cr.execute(""" SELECT msg.res_id FROM mail_message msg
@@ -176,8 +177,8 @@ class MailThread(models.AbstractModel):
                              ON rel.mail_message_id = msg.id
                              RIGHT JOIN mail_channel_partner cp
                              ON (cp.channel_id = rel.mail_channel_id AND cp.partner_id = %s AND (cp.seen_message_id < msg.id))
-                             WHERE msg.model = %s AND msg.res_id in %s""",
-                         (self.env.user.partner_id.id, self._name, tuple(self.ids),))
+                             WHERE msg.model = %s AND msg.res_id in %s AND msg.author_id != %s""",
+                         (partner_id, self._name, tuple(self.ids), partner_id,))
         for result in self._cr.fetchall():
             res[result[0]] += 1
 
@@ -730,6 +731,17 @@ class MailThread(models.AbstractModel):
         self.ensure_one()
         res = dict()
         return res
+
+    @api.multi
+    def message_get_recipient_values(self, notif_message=None, recipient_ids=None):
+        """ Get specific notification recipient values to store on the notification
+        mail_mail. Basic method just set the recipient partners as mail_mail
+        recipients. Inherit this method to add custom behavior like using
+        recipient email_to to bypass the recipint_ids heuristics in the
+        mail sending mechanism. """
+        return {
+            'recipient_ids': [(4, pid) for pid in recipient_ids]
+        }
 
     # ------------------------------------------------------
     # Mail gateway
@@ -1627,8 +1639,6 @@ class MailThread(models.AbstractModel):
         # 1: Handle content subtype: if plaintext, converto into HTML
         if content_subtype == 'plaintext':
             body = tools.plaintext2html(body)
-        else:
-            body = tools.html_keep_url(body)
 
         # 2: Private message: add recipients (recipients and author of parent message) - current author
         #   + legacy-code management (! we manage only 4 and 6 commands)
@@ -1996,3 +2006,13 @@ class MailThread(models.AbstractModel):
         msg_comment.write({"res_id": new_thread.id, "model": new_thread._name})
         msg_not_comment.write({"res_id": new_thread.id, "model": new_thread._name, "subtype_id": None})
         return True
+
+    # ------------------------------------------------------
+    # Mass mailing
+    # ------------------------------------------------------
+
+    def message_mass_mailing_enabled(self):
+        if self._mail_mass_mailing:
+            # TODO master properly translate
+            # the _mail_mass_mailing is evaluted at code start so not translated
+            return _(self._mail_mass_mailing)
