@@ -3,16 +3,20 @@
 # * calendar
 # 
 # Translators:
+# Benedicte HANET <hanetb@gmail.com>, 2016
+# lea geffroy <geffroylea@gmail.com>, 2016
+# Martin Trigaux, 2016
 # Maxime Chambreuil <maxime.chambreuil@gmail.com>, 2015
 # Nicolas JEUDY <nicolas@sudokeys.com>, 2015
 # Nicolas JEUDY <nicolas@sudokeys.com>, 2015
+# Olivier Dony <odo@odoo.com>, 2016
 # Olivier Lenoir <olivier.lenoir@free.fr>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-20 13:58+0000\n"
-"PO-Revision-Date: 2016-01-21 10:31+0000\n"
+"PO-Revision-Date: 2016-02-12 09:50+0000\n"
 "Last-Translator: Martin Trigaux\n"
 "Language-Team: French (http://www.transifex.com/odoo/odoo-9/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -407,13 +411,13 @@ msgstr "Le %s à (%s pour %s) (%s)"
 #: code:addons/calendar/calendar.py:263
 #, python-format
 msgid "%s has accepted invitation"
-msgstr ""
+msgstr "%s a accepté l'invitation"
 
 #. module: calendar
 #: code:addons/calendar/calendar.py:278
 #, python-format
 msgid "%s has declined invitation"
-msgstr ""
+msgstr "%s a refusé l'invitation"
 
 #. module: calendar
 #: model:ir.ui.view,arch_db:calendar.view_calendar_event_form
@@ -543,7 +547,7 @@ msgstr "Alarme"
 #: code:addons/calendar/static/src/xml/base_calendar.xml:43
 #, python-format
 msgid "Calendar Invitation"
-msgstr ""
+msgstr "Invitation calendrier"
 
 #. module: calendar
 #: model:ir.ui.view,arch_db:calendar.view_calendar_event_form
@@ -1059,7 +1063,7 @@ msgstr "Nécessite une action"
 #: code:addons/calendar/static/src/xml/base_calendar.xml:36
 #, python-format
 msgid "No I'm not going."
-msgstr ""
+msgstr "No, je n'y vais pas"
 
 #. module: calendar
 #: selection:calendar.alarm,type:0
@@ -1462,21 +1466,21 @@ msgstr "Jour de la semaine"
 #: code:addons/calendar/static/src/xml/base_calendar.xml:48
 #, python-format
 msgid "When"
-msgstr ""
+msgstr "Quand"
 
 #. module: calendar
 #. openerp-web
 #: code:addons/calendar/static/src/xml/base_calendar.xml:52
 #, python-format
 msgid "Where"
-msgstr ""
+msgstr "Où"
 
 #. module: calendar
 #. openerp-web
 #: code:addons/calendar/static/src/xml/base_calendar.xml:56
 #, python-format
 msgid "Who"
-msgstr ""
+msgstr "Qui"
 
 #. module: calendar
 #: selection:calendar.event,rrule_type:0
@@ -1488,7 +1492,7 @@ msgstr "Année(s)"
 #: code:addons/calendar/static/src/xml/base_calendar.xml:35
 #, python-format
 msgid "Yes I'm going."
-msgstr ""
+msgstr "Oui je le fais"
 
 #. module: calendar
 #: code:addons/calendar/calendar.py:106
