@@ -1866,7 +1866,7 @@ $sheet-padding: 16px
             opacity: 0
             display: block !important
     .oe_list.oe_list_editable.oe_editing
-        .oe_edition .oe_list_field_cell
+        .oe_edition .oe_list_field_cell:not(.oe-button)
             *
                 visibility: hidden
             color: transparent
@@ -1960,6 +1960,7 @@ $sheet-padding: 16px
                 border-width: 0
         td.oe_number
             text-align: right !important
+            white-space: nowrap !important
             max-width: 100px
         td.oe_list_field_date, th.oe_list_header_date
             min-width: 6em
